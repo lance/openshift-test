@@ -1,0 +1,21 @@
+{
+  "name": "openshift-test",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "Lance Ball",
+  "license": "Apache-2.0",
+  "files": [
+    "package.json",
+    "LICENSE",
+    "index.js"
+  ],
+  "scripts": {
+    "deploy": "nodeshift deploy --expose=true --strictSSL=false --nodeVersion=8.x --build.env NODE_ENV=debug"
+  },
+  "dependencies": {
+    "world": "git@github.com:lance/world.git"
+  },
+  "devDependencies": {
+    "nodeshift": "~1.7.0"
+  }
+}
