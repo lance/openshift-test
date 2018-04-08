@@ -2,7 +2,7 @@
   "name": "openshift-test",
   "version": "0.0.1",
   "main": "index.js",
-  "author": "Lance Ball",
+  "author": "Bucharest Gold",
   "license": "Apache-2.0",
   "files": [
     "package.json",
@@ -10,10 +10,14 @@
     "index.js"
   ],
   "scripts": {
-    "deploy": "nodeshift deploy --expose=true --strictSSL=false --nodeVersion=8.x --build.env NODE_ENV=debug"
+    "start": "node .",
+    "preinstall": "git config -l",
+    "build": "s2i build --exclude \"(^|/)node_modules(/|$)\" . bucharestgold/centos7-s2i-nodejs bucharestgold/openshift-test:latest",
+    "deploy-oc": "oc new-app bucharestgold/openshift-test:latest && oc expose svc/openshift-test",
+    "deploy-nodeshift": "nodeshift deploy --build.env NODE_ENV=debug --expose=true --strictSSL=false --nodeVersion=latest"
   },
   "dependencies": {
-    "world": "git@github.com:lance/world.git"
+    "world": "github:bucharest-gold/world.git"
   },
   "devDependencies": {
     "nodeshift": "~1.7.0"
